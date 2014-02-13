@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="clothesModule">
+	<head>
+		<link rel="stylesheet" type="text/stylesheet" href="style.css">
+	</head>
+
+	<body>
+		<div ng-controller="ClothesController">
+			Clothing:
+			<br />
+			<input type="text" ng-model="typeClothes">
+			<br />
+			<ul>
+				<li ng-repeat="c in clothes | filter:typeClothes | orderBy:'color'">{{ c.type }} - {{ c.color }}</li>
+			</ul>
+		</div>	
+	<script src="scripts/angular.min.js"></script>
+	<script>
+	var clothesModule = angular.module('clothesModule', []);
+
+	clothesModule.controller('ClothesController', function($scope) {
+			$scope.clothes = [
+				{type:'jeans', color: 'blue'}, 
+				{type: 'blouse', color: 'polkadot'}, 
+				{type: 'blouse', color: 'black'}, 
+				{type: 'dress', color: 'red'}, 
+				{type: 'skirt', color: 'yellow'}, 
+				{type: 'skirt', color: 'red'},
+				{type: 'jeans', color: 'dark wash'},
+				{type: 'jeans', color: 'black'},
+				{type: 'dress', color: 'white'},
+				{type: 'dress', color: 'floral print'},
+				{type: 'blouse', color: 'green plaid'}
+				];
+		});
+
+	</script>
+	</body>
+</html>
