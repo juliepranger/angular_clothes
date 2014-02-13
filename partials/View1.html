@@ -1,0 +1,21 @@
+<div class="container">
+	<h2>View 1</h2>
+	Clothing:
+	<br />
+	<input type="text" ng-model="filter.clothesFilter"/>
+	<br />
+	<ul>
+		<li ng-repeat="c in clothes | filter:filter.clothesFilter | orderBy: 'color'">{{c.type}} - {{c.color}}</li>
+	</ul>
+
+	<br />
+	Clothing Type:<br />
+	<input type="text" ng-model="newClothing.type" />
+	<br />
+	Clothing Color: <br />
+	<input type="text" ng-model="newClothing.color" />
+	<br />
+	<button ng-click="addClothing()">Add Clothing</button>
+	<br />
+	<a href="#/view2">View 2</a>
+</div>

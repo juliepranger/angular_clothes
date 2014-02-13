@@ -5,18 +5,15 @@
 	</head>
 
 	<body>
-		<div ng-controller="ClothesController">
-			Clothing:
-			<br />
-			<input type="text" ng-model="typeClothes">
-			<br />
-			<ul>
-				<li ng-repeat="c in clothes | filter:typeClothes | orderBy:'color'">{{ c.type }} - {{ c.color }}</li>
-			</ul>
-		</div>	
+		<!--placeholder for views -->
+		<div>
+			<div ng-view></div>	
+		</div>
 	<script src="scripts/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script>
-	var clothesModule = angular.module('clothesModule', []);
+	var clothesModule = angular.module('clothesModule', ['ngRoute']);
 
 	clothesModule.controller('ClothesController', function($scope) {
 			$scope.clothes = [
@@ -32,8 +29,31 @@
 				{type: 'dress', color: 'floral print'},
 				{type: 'blouse', color: 'green plaid'}
 				];
+			$scope.addClothing = function() {
+				$scope.clothes.push({
+					type: $scope.newClothing.type, 
+					color: $scope.newClothing.color
+				});
+			};
+			$scope.clothesFilter
 		});
 
+	clothesModule.config(['$routeProvider', function ($routeProvider) {
+		$routeProvider
+			.when('/',
+			{
+					controller: 'ClothesController',
+					templateUrl: 'partials/View1.html'
+			})
+			.when('/view2',
+			{
+					controller: 'ClothesController',
+					templateUrl: 'partials/View2.html'
+			})
+			.otherwise({ 
+					redirectTo: '/' 
+				});
+	}]);
 	</script>
 	</body>
 </html>
