@@ -1,0 +1,10 @@
+{
+  "name": "my-closet",
+  "version": "0.0.0",
+  "description": "closet organization app",
+  "main": "angular_clothes/app.js",
+  "devDependencies": {
+  		"express": "~3.4.4",
+  		"mongoose": "~3.6.2"
+  }
+}
